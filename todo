@@ -1,0 +1,31 @@
+
+version 0 : ( mvp )
+
+    1. schedule day priorities.  limit the priorities to 3 
+    2. store user commitment
+    3. improve ui and then ux later
+    - We need to style the priority to know which of the list has the most priority of the day.
+
+    4. improve the ux ( user experience )
+    - show the user form input error if there is. 
+    - remove priorities.
+
+
+version 1 : 
+    1. user give prefills his time schedule, when does he sleep, when does wake up
+
+
+version 2 : 
+    1. user can selects the day to see the sheet. ( display a calendar )
+    2. user gets notification before going to bed to prepare a sheet
+
+
+
+
+
+
+
+
+
+
+

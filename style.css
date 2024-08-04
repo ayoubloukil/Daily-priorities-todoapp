@@ -6,3 +6,10 @@
     text-align: center;
     margin-top: 5%;
 }
+#ordered-list{
+    text-align: center;
+    margin-top: 30px;
+}
+#ordered-list li {
+    margin-top: 30px;
+}

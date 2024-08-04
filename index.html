@@ -7,13 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="container-submit">
-        <input id="txt-priority" type="text">
-        <button id="btn-submit" onclick="addTask()" type="submit">Add Task</button>
-        <button id="btn-confirm" onclick="confirmTasks()" type="submit">Confirm Selection</button>
+    <div id="container">
+        <div id="container-submit">
+            <input id="txt-priority" type="text">
+            <button id="btn-submit" onclick="addTask()" type="submit">Add Task</button>
+            <button id="btn-confirm" onclick="confirmTasks()" type="submit">Confirm Selection</button><br>
+            <div id="input-err">
+            </div>
+        </div>
+        <ol id="ordered-list">
+        </ol>
     </div>
-    <ol id="ordered-list">
-    </ol>
+    <div id="container-confirm">
+        <div id="container-confirm-message">
+
+        </div>
+        <ol id="ordered-list-confirm">
+        </ol>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

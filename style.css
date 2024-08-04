@@ -13,3 +13,14 @@
 #ordered-list li {
     margin-top: 30px;
 }
+#ordered-list-confirm {
+    text-align: center;
+    margin-top: 50px;
+}
+#ordered-list-confirm  li{
+    margin-top: 30px;
+}
+#container-confirm-message{
+    text-align: center;
+    margin-top: 30px;
+}

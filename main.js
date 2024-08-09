@@ -8,8 +8,8 @@ const container_confirm = document.getElementById("container-confirm");
 const deleteSection = document.getElementById("container-confirm-deleteSection");
 const addContainer = document.getElementById("container");
 const checkArray = JSON.parse(localStorage.getItem("tasks"));
+const deleteMsg = document.getElementById("container-confirm-deleteSectionMsg");
 let taskArr = [];
-
 
 
 function addTask(){
@@ -25,7 +25,6 @@ function addTask(){
         } else {
             alert("You have reached the maximum amount of tasks you can submit!")
         }
-        console.log(taskArr)
         submitInput.value = "";
     }   else {
         let errMessage = document.createElement('p');
@@ -53,12 +52,39 @@ function showTasks(){
             listItem.innerText = getTasks[i];
             olElementConfirm.appendChild(listItem);
             listItem.style.listStyle = "decimal inside";
+            editBtn = document.createElement('button');
+            editBtn.innerHTML = "Edit task";
+            listItem.appendChild(editBtn);
+            editBtn.style.marginLeft = "15px";
+            editBtn.addEventListener('click', () => {
+                const editBtnConfirm = document.createElement('button');
+                const inputChange = document.createElement('input');
+
+                listItem.innerText = "";
+                editBtnConfirm.innerText = "confirm Change";
+                editBtnConfirm.style.marginLeft = "15px";
+
+                listItem.appendChild(inputChange);
+                listItem.appendChild(editBtnConfirm);
+                editBtnConfirm.addEventListener('click', () => {
+                    const updatedTask = inputChange.value.trim();
+                    if (updatedTask !== "") {
+                        getTasks[i] = updatedTask;
+                        localStorage.setItem("tasks", JSON.stringify(getTasks));
+                        showTasks(); 
+                    } else {
+                        alert("Task cannot be empty");
+                    }
+                })
+            });
+
         }
         addContainer.style.display = "none";
         let dailyTaskMessage = document.createElement('h1');
         dailyTaskMessage.innerText = "Here are your daily tasks";
         divElementConfirm.appendChild(dailyTaskMessage);
         deleteTask();
+        
     }
 }
 
@@ -67,35 +93,38 @@ window.onload = function() {
   };
 
 
-  function deleteTask() {
-    // Check if the input and button already exist
+function deleteTask() {
     let deleteInput = deleteSection.querySelector('input');
     let deleteButton = deleteSection.querySelector('button');
 
     if (!deleteInput && !deleteButton) {
-        // Create and append input and button only if they don't already exist
         deleteInput = document.createElement('input');
         deleteButton = document.createElement('button');
 
         deleteInput.placeholder = "Enter task number to delete";
-        deleteButton.innerHTML = "Delete a task";
+        deleteButton.innerHTML = "Delete task";
         deleteInput.style.marginRight = "14px";
 
         deleteSection.appendChild(deleteInput);
         deleteSection.appendChild(deleteButton);
 
-        // Add event listener for deleting a task
         deleteButton.addEventListener('click', () => {
+            deleteMsg.innerHTML = "";
             const getTasks = JSON.parse(localStorage.getItem("tasks"));
             const index = parseInt(deleteInput.value, 10) - 1;
-            if (index >= 0 && index < getTasks.length) {
-                getTasks.splice(index, 1);
-                localStorage.setItem("tasks", JSON.stringify(getTasks));
-                deleteInput.value = "";
-                showTasks();  // Update the task list display
+            if (deleteInput.value.trim() !== "" ){
+                if (index >= 0 && index < getTasks.length) {
+                    getTasks.splice(index, 1);
+                    localStorage.setItem("tasks", JSON.stringify(getTasks));
+                    deleteInput.value = "";
+                    console.log(getTasks);
+                    showTasks(); 
+                }
+            }   else {
+                let errMessage = document.createElement('p');
+                errMessage.innerText = "Submit a task to delete.";
+                deleteMsg.appendChild(errMessage);
             }
         });
     }
 }
-
-
